@@ -1,133 +1,156 @@
 <template>
-  <div class="layout">
+  <el-container class="layout-container">
+    <el-aside width="200px">
+      <div class="el-aside__logo"></div>
+      <el-menu
+        active-text-color="#ffd04b"
+        background-color="#232323"
+        :default-active="$route.path"
+        text-color="#fff"
+        router
+      >
+        <el-menu-item index="/article/channel">
+          <el-icon>
+            <Management />
+          </el-icon>
+          <span>文章分类</span>
+        </el-menu-item>
+        <el-menu-item index="/article/manage">
+          <el-icon>
+            <Promotion />
+          </el-icon>
+          <span>文章管理</span>
+        </el-menu-item>
+        <el-sub-menu index="/user">
+          <template #title>
+            <el-icon>
+              <UserFilled />
+            </el-icon>
+            <span>个人中心</span>
+          </template>
+          <el-menu-item index="/user/profile">
+            <el-icon>
+              <User />
+            </el-icon>
+            <span>基本资料</span>
+          </el-menu-item>
+          <el-menu-item index="/user/avatar">
+            <el-icon>
+              <Crop />
+            </el-icon>
+            <span>更换头像</span>
+          </el-menu-item>
+          <el-menu-item index="/user/password">
+            <el-icon>
+              <EditPen />
+            </el-icon>
+            <span>重置密码</span>
+          </el-menu-item>
+        </el-sub-menu>
+      </el-menu>
+    </el-aside>
     <el-container>
       <el-header>
-        <div>
-          <el-link href="https://element-plus.org" target="_blank"
-            >default</el-link
-          >
-          <el-link type="primary">primary</el-link>
-          <el-link type="success">success</el-link>
-          <el-link type="warning">warning</el-link>
-          <el-link type="danger">danger</el-link>
-          <el-link type="info">info</el-link>
-        </div>
+        <div>测试程序员：<b>江东小霸王</b></div>
+        <el-dropdown placement="bottom-end">
+          <span class="el-dropdown__box">
+            <el-avatar :src="avatar" />
+            <el-icon>
+              <CaretBottom />
+            </el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item command="profile" :icon="User"
+                >基本资料</el-dropdown-item
+              >
+              <el-dropdown-item command="avatar" :icon="Crop"
+                >更换头像</el-dropdown-item
+              >
+              <el-dropdown-item command="password" :icon="EditPen"
+                >重置密码</el-dropdown-item
+              >
+              <el-dropdown-item command="logout" :icon="SwitchButton"
+                >退出登录</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </el-header>
-      <el-container>
-        <el-aside width="200px">
-          <el-row class="tac">
-            <el-col :span="12">
-              <h5 class="mb-2">Default colors</h5>
-              <el-menu
-                default-active="2"
-                class="el-menu-vertical-demo"
-                @open="handleOpen"
-                @close="handleClose"
-              >
-                <el-sub-menu index="1">
-                  <template #title>
-                    <el-icon>
-                      <location />
-                    </el-icon>
-                    <span>Navigator One</span>
-                  </template>
-                  <el-menu-item-group title="Group One">
-                    <el-menu-item index="1-1">item one</el-menu-item>
-                    <el-menu-item index="1-2">item two</el-menu-item>
-                  </el-menu-item-group>
-                  <el-menu-item-group title="Group Two">
-                    <el-menu-item index="1-3">item three</el-menu-item>
-                  </el-menu-item-group>
-                  <el-sub-menu index="1-4">
-                    <template #title>item four</template>
-                    <el-menu-item index="1-4-1">item one</el-menu-item>
-                  </el-sub-menu>
-                </el-sub-menu>
-                <el-menu-item index="2">
-                  <el-icon><icon-menu /></el-icon>
-                  <span>Navigator Two</span>
-                </el-menu-item>
-                <el-menu-item index="3" disabled>
-                  <el-icon>
-                    <document />
-                  </el-icon>
-                  <span>Navigator Three</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                  <el-icon>
-                    <setting />
-                  </el-icon>
-                  <span>Navigator Four</span>
-                </el-menu-item>
-              </el-menu>
-            </el-col>
-            <el-col :span="12">
-              <h5 class="mb-2">Custom colors</h5>
-              <el-menu
-                active-text-color="#ffd04b"
-                background-color="#545c64"
-                class="el-menu-vertical-demo"
-                default-active="2"
-                text-color="#fff"
-                @open="handleOpen"
-                @close="handleClose"
-              >
-                <el-sub-menu index="1">
-                  <template #title>
-                    <el-icon>
-                      <location />
-                    </el-icon>
-                    <span>Navigator One</span>
-                  </template>
-                  <el-menu-item-group title="Group One">
-                    <el-menu-item index="1-1">item one</el-menu-item>
-                    <el-menu-item index="1-2">item two</el-menu-item>
-                  </el-menu-item-group>
-                  <el-menu-item-group title="Group Two">
-                    <el-menu-item index="1-3">item three</el-menu-item>
-                  </el-menu-item-group>
-                  <el-sub-menu index="1-4">
-                    <template #title>item four</template>
-                    <el-menu-item index="1-4-1">item one</el-menu-item>
-                  </el-sub-menu>
-                </el-sub-menu>
-                <el-menu-item index="2">
-                  <el-icon><icon-menu /></el-icon>
-                  <span>Navigator Two</span>
-                </el-menu-item>
-                <el-menu-item index="3" disabled>
-                  <el-icon>
-                    <document />
-                  </el-icon>
-                  <span>Navigator Three</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                  <el-icon>
-                    <setting />
-                  </el-icon>
-                  <span>Navigator Four</span>
-                </el-menu-item>
-              </el-menu>
-            </el-col>
-          </el-row>
-        </el-aside>
-        <el-main>
-          <div class="main"></div>
-        </el-main>
-      </el-container>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+      <el-footer>大事件 ©2023 Created by 黑马程序员</el-footer>
     </el-container>
-  </div>
+  </el-container>
 </template>
 
-<style>
-.layout {
-  width: 100%;
-  height: 100%;
-  background-color: aquamarine;
-}
-.main {
-  width: 100%;
-  height: 100%;
-  background-color: aquamarine;
+<script setup>
+import {
+  Management,
+  Promotion,
+  UserFilled,
+  User,
+  Crop,
+  EditPen,
+  SwitchButton,
+  CaretBottom
+} from '@element-plus/icons-vue'
+import avatar from '@/assets/default.png'
+// import { useUserStore } from '@/stores'
+
+// const userStore = useUserStore()
+
+// onMounted(() => {
+//   userStore.getUser()
+// })
+</script>
+
+<style lang="scss" scoped>
+.layout-container {
+  height: 100vh;
+
+  .el-aside {
+    background-color: #232323;
+
+    &__logo {
+      height: 120px;
+      background: url('@/assets/logo.png') no-repeat center / 120px auto;
+    }
+
+    .el-menu {
+      border-right: none;
+    }
+  }
+
+  .el-header {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .el-dropdown__box {
+      display: flex;
+      align-items: center;
+
+      .el-icon {
+        color: #999;
+        margin-left: 10px;
+      }
+
+      &:active,
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .el-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #666;
+  }
 }
 </style>
