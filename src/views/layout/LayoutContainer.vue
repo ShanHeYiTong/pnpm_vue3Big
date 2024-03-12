@@ -1,5 +1,5 @@
 <template>
-  <el-container class="layout-container">
+  <el-container class="layout-container" v-if="!showIf">
     <el-aside width="200px">
       <div class="el-aside__logo"></div>
       <el-menu
@@ -52,6 +52,7 @@
     <el-container>
       <el-header>
         <div>测试程序员：<b>江东小霸王</b></div>
+        <button @click="showIf = !showIf">切换</button>
         <el-dropdown placement="bottom-end">
           <span class="el-dropdown__box">
             <el-avatar :src="avatar" />
@@ -80,9 +81,18 @@
       <el-main>
         <router-view></router-view>
       </el-main>
-      <el-footer>大事件 ©2023 Created by 黑马程序员</el-footer>
+      <el-footer> ©2024 Created by 数据可视化测试</el-footer>
     </el-container>
   </el-container>
+
+  <div class="web-body" v-if="showIf">
+    <div>
+      <button @click="showIf = !showIf">切换</button>
+    </div>
+    <div>
+      <WebData></WebData>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -97,6 +107,9 @@ import {
   CaretBottom
 } from '@element-plus/icons-vue'
 import avatar from '@/assets/default.png'
+import { ref } from 'vue'
+import WebData from '@/views/webThree/WebData.vue'
+
 // import { useUserStore } from '@/stores'
 
 // const userStore = useUserStore()
@@ -104,9 +117,15 @@ import avatar from '@/assets/default.png'
 // onMounted(() => {
 //   userStore.getUser()
 // })
+const showIf = ref(false)
 </script>
 
 <style lang="scss" scoped>
+.web-body {
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  z-index: -1;
+}
 .layout-container {
   height: 100vh;
 
