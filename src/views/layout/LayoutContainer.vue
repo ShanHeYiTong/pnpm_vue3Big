@@ -86,12 +86,8 @@
   </el-container>
 
   <div class="web-body" v-if="showIf">
-    <div>
-      <button @click="showIf = !showIf">切换</button>
-    </div>
-    <div>
-      <WebData></WebData>
-    </div>
+    <!-- <WebData @enlarge-text="showIf = !showIf"></WebData> -->
+    <CesiumHtml></CesiumHtml>
   </div>
 </template>
 
@@ -109,6 +105,7 @@ import {
 import avatar from '@/assets/default.png'
 import { ref } from 'vue'
 import WebData from '@/views/webThree/WebData.vue'
+import CesiumHtml from '@/views/webThree/CesiumHtml.vue'
 
 // import { useUserStore } from '@/stores'
 
@@ -122,9 +119,10 @@ const showIf = ref(false)
 
 <style lang="scss" scoped>
 .web-body {
+  width: 100%;
   height: 100vh;
-  background-color: rgb(0, 0, 0);
-  z-index: -1;
+  background: url('@/assets/pageBg.png') no-repeat center center;
+  background-size: cover;
 }
 .layout-container {
   height: 100vh;
